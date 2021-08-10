@@ -216,120 +216,118 @@
     matrix.write(); // Вывод на диспл
   }
 /*********************************************/
-void huor() {
-  uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  void huor() {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_H = dt.hour;
-   String hour1 = String (in_H/10);
+    dt = clock.getDateTime();
+    in_H = dt.hour;
+    String hour1 = String (in_H/10);
     String hour2 = String (in_H%10);
-     int xh = 2;
+    int xh = 2;
     matrix.drawChar(xh, y, hour1[0], HIGH, LOW, 1);
     matrix.drawChar(xh+6, y, hour2[0], HIGH, LOW, 1);
- if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.hour++;                             // пребавляем единицу к часам
-if (dt.hour > 23) dt.hour = 0;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.hour--;                             // пребавляем единицу к часам
-if (dt.hour < 1) dt.hour = 23;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-     matrix.write(); // Вывод на диспл
-}
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.hour++;                             // пребавляем единицу к часам
+        if (dt.hour > 23) dt.hour = 0;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.hour--;                             // пребавляем единицу к часам
+      if (dt.hour < 1) dt.hour = 23;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    matrix.write(); // Вывод на диспл
+  }
 /****************************************************/
-void minut() {
-   uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  void minut() {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_H = dt.hour;
-   in_M = dt.minute;
+    dt = clock.getDateTime();
+    in_H = dt.hour;
+    in_M = dt.minute;
     String min1 = String (in_M/10);
     String min2 = String (in_M%10);
-     int xm = 19;
-   matrix.drawChar(xm, y, min1[0], HIGH, LOW, 1);
+    int xm = 19;
+    matrix.drawChar(xm, y, min1[0], HIGH, LOW, 1);
     matrix.drawChar(xm+6, y, min2[0], HIGH, LOW, 1);
-     if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.minute++;                             // пребавляем единицу к часам
-if (dt.minute > 59) dt.minute = 0;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.minute--;                             // пребавляем единицу к часам
-if (dt.minute < 1) dt.minute = 59;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-     matrix.write(); // Вывод на диспл
-}
-void ScrollText (String text){
-    for ( int i = 0 ; i < width * text.length() + matrix.width() - 1 - spacer; i++ ) {
-    if (refresh==1) i=0;
-    refresh=0;
-    matrix.fillScreen(LOW);
-    int letter = i / width;
-    int x = (matrix.width() - 1) - i % width;
-    int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.minute++;                             // пребавляем единицу к часам
+      if (dt.minute > 59) dt.minute = 0;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.minute--;                             // пребавляем единицу к часам
+      if (dt.minute < 1) dt.minute = 59;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    matrix.write(); // Вывод на диспл
+  }
+  
+    void ScrollText (String text){
+      for ( int i = 0 ; i < width * text.length() + matrix.width() - 1 - spacer; i++ ) {
+        if (refresh==1) i=0;
+          refresh=0;
+          matrix.fillScreen(LOW);
+          int letter = i / width;
+          int x = (matrix.width() - 1) - i % width;
+          int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
  
-    while ( x + width - spacer >= 0 && letter >= 0 ) {
-      if ( letter < text.length() ) {
-        matrix.drawChar(x, y, text[letter], HIGH, LOW, 1);
-      }
-      letter--;
-      x -= width;
-    }
-    matrix.write(); // Вывод на дисплей
-    delay(wait);
+          while ( x + width - spacer >= 0 && letter >= 0 ) {
+            if ( letter < text.length() ) {
+              matrix.drawChar(x, y, text[letter], HIGH, LOW, 1);
+            }
+           letter--;
+           x -= width;
+         }
+        matrix.write(); // Вывод на дисплей
+      delay(wait);
+    } 
   }
-}
-String utf8rus(String source)
-{
-  int i,k;
-  String target;
-  unsigned char n;
-  char m[2] = { '0', '\0' };
-
-  k = source.length(); i = 0;
-
-  while (i < k) {
-    n = source[i]; i++;
-
-    if (n >= 0xC0) {
-      switch (n) {
-        case 0xD0: {
-          n = source[i]; i++;
-          if (n == 0x81) { n = 0xA8; break; }
-          if (n >= 0x90 && n <= 0xBF) n = n + 0x30-1;
-          break;
-        }
-        case 0xD1: {
-          n = source[i]; i++;
-          if (n == 0x91) { n = 0xB8; break; }
-          if (n >= 0x80 && n <= 0x8F) n = n + 0x70-1;
-          break;
+  
+  String utf8rus(String source){
+    int i,k;
+    String target;
+    unsigned char n;
+    char m[2] = { '0', '\0' };
+    k = source.length(); i = 0;
+    while (i < k) {
+      n = source[i]; i++;
+      if (n >= 0xC0) {
+        switch (n) {
+          case 0xD0: {
+            n = source[i]; i++;
+            if (n == 0x81) { n = 0xA8; break; }
+            if (n >= 0x90 && n <= 0xBF) n = n + 0x30-1;
+            break;
+          }
+          case 0xD1: {
+            n = source[i]; i++;
+            if (n == 0x91) { n = 0xB8; break; }
+            if (n >= 0x80 && n <= 0x8F) n = n + 0x70-1;
+            break;
+          }
         }
       }
+      m[0] = n; target = target + String(m);
     }
-    m[0] = n; target = target + String(m);
+    return target;
   }
-return target;
-}
 
-void data() {
-  matrix.fillScreen(LOW);
-  clock.getDateTime();
-  int r = (matrix.height() - 8) / 2; // Центри
-  mont = dt.month;
+  void data() {
+    matrix.fillScreen(LOW);
+    clock.getDateTime();
+    int r = (matrix.height() - 8) / 2; // Центри
+    mont = dt.month;
       if (mont == "1") mont = "Января";
       if (mont == "2") mont = "Февраля";
       if (mont == "3") mont = "Марта";
@@ -342,7 +340,7 @@ void data() {
       if (mont == "10") mont = "Октября";
       if (mont == "11") mont = "Ноября";
       if (mont == "12") mont = "Декабря";
-   in_day = dt.day;
+    in_day = dt.day;
        String data1 = String (in_day/10);
        String data2 = String (in_day%10);
     in_year = dt.year;
@@ -352,7 +350,7 @@ void data() {
        String temp1 = String (in_temp_home/10);
        String temp2 = String (in_temp_home%10);
        //weatherString = "Всем привет. Я бегущая строка";
-       weatherString = String(data1)+(data2)+" "+(mont)+" "+String(year1)+(year2)+" t: "+String(temp1)+(temp2)+" дома";
+    weatherString = String(data1)+(data2)+" "+(mont)+" "+String(year1)+(year2)+" t: "+String(temp1)+(temp2)+" дома";
 //       if (radio.available()) {
 //int temperature = 0;
 //if (!radio.read(&temperature, sizeof(int))) {
@@ -370,313 +368,316 @@ void data() {
 //       } 
 }
 
-void clock_data () {
-   uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  void clock_data () {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_d = dt.day;
-   in_mon = dt.month;
+    dt = clock.getDateTime();
+    in_d = dt.day;
+    in_mon = dt.month;
     String day1 = String (in_d/10);
     String day2 = String (in_d%10);
     String mon1 = String (in_mon/10);
     String mon2 = String (in_mon%10);
     int xh = 2;
-     int xm = 19;
-     if(dt.second & 1){
+    int xm = 19;
+    if(dt.second & 1){
    // matrix.drawChar(14, y, (String(":"))[0], HIGH, LOW, 1);
+      matrix.drawChar(xh, y, day1[0], HIGH, LOW, 1);
+      matrix.drawChar(xh+6, y, day2[0], HIGH, LOW, 1);
+      matrix.drawChar(xm, y, mon1[0], HIGH, LOW, 1);
+      matrix.drawChar(xm+6, y, mon2[0], HIGH, LOW, 1);
+    } else {
+   // matrix.drawChar(14, y, (String(" "))[0], HIGH, LOW, 1);
+      matrix.drawChar(xh, y, (String(" "))[0], HIGH, LOW, 1);
+      matrix.drawChar(xh+6, y, (String(" "))[0], HIGH, LOW, 1);
+      matrix.drawChar(xm, y, (String(" "))[0], HIGH, LOW, 1);
+      matrix.drawChar(xm+6, y, (String(" "))[0], HIGH, LOW, 1);
+    }
+    matrix.write(); // Вывод на диспл
+  }
+
+  void my_day() {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
+    int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
+    dt = clock.getDateTime();
+    in_d = dt.day;
+    String day1 = String (in_d/10);
+    String day2 = String (in_d%10);
+    int xh = 2;
     matrix.drawChar(xh, y, day1[0], HIGH, LOW, 1);
     matrix.drawChar(xh+6, y, day2[0], HIGH, LOW, 1);
-    matrix.drawChar(xm, y, mon1[0], HIGH, LOW, 1);
-    matrix.drawChar(xm+6, y, mon2[0], HIGH, LOW, 1);
-     } else {
-   // matrix.drawChar(14, y, (String(" "))[0], HIGH, LOW, 1);
-    matrix.drawChar(xh, y, (String(" "))[0], HIGH, LOW, 1);
-    matrix.drawChar(xh+6, y, (String(" "))[0], HIGH, LOW, 1);
-    matrix.drawChar(xm, y, (String(" "))[0], HIGH, LOW, 1);
-    matrix.drawChar(xm+6, y, (String(" "))[0], HIGH, LOW, 1);
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.day++;                             // пребавляем единицу к часам
+      if (dt.day > 31) dt.day = 0;         // если вылезли за границы присваеваем 0
+        clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.day--;                             // пребавляем единицу к часам
+      if (dt.day < 1) dt.day = 23;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
     }
      matrix.write(); // Вывод на диспл
-}
-
-void my_day() {
-   uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  }
+  
+  void my_month() {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_d = dt.day;
-   String day1 = String (in_d/10);
-    String day2 = String (in_d%10);
-     int xh = 2;
-    matrix.drawChar(xh, y, day1[0], HIGH, LOW, 1);
-    matrix.drawChar(xh+6, y, day2[0], HIGH, LOW, 1);
- if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.day++;                             // пребавляем единицу к часам
-if (dt.day > 31) dt.day = 0;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.day--;                             // пребавляем единицу к часам
-if (dt.day < 1) dt.day = 23;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-     matrix.write(); // Вывод на диспл
-}
-void my_month() {
-  uint32_t ms = millis();
-   matrix.fillScreen(LOW);
-    int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_mon = dt.month;
-   String mon1 = String (in_mon/10);
+    dt = clock.getDateTime();
+    in_mon = dt.month;
+    String mon1 = String (in_mon/10);
     String mon2 = String (in_mon%10);
-     int xm = 19;
+    int xm = 19;
     matrix.drawChar(xm, y, mon1[0], HIGH, LOW, 1);
     matrix.drawChar(xm+6, y, mon2[0], HIGH, LOW, 1);
- if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.month++;                             // пребавляем единицу к часам
-if (dt.month > 12) dt.month = 0;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.month--;                             // пребавляем единицу к часам
-if (dt.month < 1) dt.month = 12;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-     matrix.write(); // Вывод на диспл
-}
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.month++;                             // пребавляем единицу к часам
+      if (dt.month > 12) dt.month = 0;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.month--;                             // пребавляем единицу к часам
+      if (dt.month < 1) dt.month = 12;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    matrix.write(); // Вывод на диспл
+  }
 
-
-
-void jarkost_day() {
- uint32_t ms = millis();
-  dt = clock.getDateTime();
-   matrix.fillScreen(LOW);
+  void jarkost_day() {
+    uint32_t ms = millis();
+    dt = clock.getDateTime();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-     int xh = 11;
-     int xm = 19;
+    int xh = 11;
+    int xm = 19;
     matrix.drawChar(3, y, (String("6"))[0], HIGH, LOW, 1);
     matrix.drawChar(xh, y, (String("-"))[0], HIGH, LOW, 1);
     matrix.drawChar(xm, y, (String("2"))[0], HIGH, LOW, 1);
     matrix.drawChar(xm+6, y, (String("2"))[0], HIGH, LOW, 1);
-     matrix.write(); // Вывод на диспл
- if (jday > 7) {
-  jday = 0;
- }
-  if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    jday ++;
+    matrix.write(); // Вывод на диспл
+    if (jday > 7) {
+      jday = 0;
+    }
+    
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      jday ++;
+    }
+    switch(jday) {
+      case 0:jday == 3;
+        break;
+      case 1:jday == 5;
+        break;
+      case 2:jday == 7;
+        break;
+      case 3:jday == 9;
+        break;
+      case 4:jday == 11;
+        break;
+      case 5:jday == 13;
+        break;
+      case 6:jday == 15;
+        break;
+    }
+    matrix.setIntensity(jday);
   }
-      switch(jday) {
-  case 0:jday == 3;
-  break;
-  case 1:jday == 5;
-  break;
-  case 2:jday == 7;
-  break;
-  case 3:jday == 9;
-  break;
-  case 4:jday == 11;
-  break;
-  case 5:jday == 13;
-  break;
-  case 6:jday == 15;
-  break;
-  }
-  matrix.setIntensity(jday);
-}
-void jarkost_noch() {
-  uint32_t ms = millis();
-  dt = clock.getDateTime();
-   matrix.fillScreen(LOW);
+  
+  void jarkost_noch() {
+    uint32_t ms = millis();
+    dt = clock.getDateTime();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-     int xh = 9;
-     int xm = 17;
+    int xh = 9;
+    int xm = 17;
     matrix.drawChar(3, y, (String("2"))[0], HIGH, LOW, 1);
     matrix.drawChar(xh, y, (String("2"))[0], HIGH, LOW, 1);
     matrix.drawChar(xm, y, (String("-"))[0], HIGH, LOW, 1);
     matrix.drawChar(xm+8, y, (String("6"))[0], HIGH, LOW, 1);
-     matrix.write(); // Вывод на диспл
- if (jnoch > 7) {
-  jnoch = 0;
- }
-  if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    jnoch ++;
+    matrix.write(); // Вывод на диспл
+    
+    if (jnoch > 7) {
+      jnoch = 0;
+    }
+    
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      jnoch ++;
+    }
+    
+    switch(jnoch) {
+      case 0:jnoch == 3;
+        break;
+      case 1:jnoch == 5;
+        break;
+      case 2:jnoch == 7;
+        break;
+      case 3:jnoch == 9;
+        break;
+      case 4:jnoch == 11;
+        break;
+      case 5:jnoch == 13;
+        break;
+      case 6:jnoch == 15;
+        break;
+    }
+    matrix.setIntensity(jnoch);
   }
-      switch(jnoch) {
-  case 0:jnoch == 3;
-  break;
-  case 1:jnoch == 5;
-  break;
-  case 2:jnoch == 7;
-  break;
-  case 3:jnoch == 9;
-  break;
-  case 4:jnoch == 11;
-  break;
-  case 5:jnoch == 13;
-  break;
-  case 6:jnoch == 15;
-  break;
-  }
-  matrix.setIntensity(jnoch);
-}
 
-void speak() {
-  in_S = dt.second;
-  in_H = dt.hour;
-  in_M = dt.minute;
-  if (in_H == 7 && in_M == 0 && in_S == 0) {
+  void speak() {
+    in_S = dt.second;
+    in_H = dt.hour;
+    in_M = dt.minute;
+    if (in_H == 7 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (1);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 8 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 8 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (2);
-    previousMillis = millis(); 
-  }
-}
- if (in_H == 9 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 9 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (3);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 10 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 10 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (4);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 11 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 11 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (5);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 12 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 12 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (6);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 13 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 13 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (7);
-    previousMillis = millis(); 
-  }
-}
- if (in_H == 14 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 14 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (8);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 15 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 15 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (9);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 16 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 16 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (10);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 17 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 17 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (11);
-    previousMillis = millis(); 
-  }
-}
- if (in_H == 18 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 18 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (12);
         previousMillis = millis(); 
-  }
-}
-if (in_H == 19 && in_M == 0 && in_S == 0) {
+      }
+    }
+    if (in_H == 19 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (13);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 20 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 20 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (14);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 21 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 21 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (15);
-    previousMillis = millis(); 
-  }
-}
-if (in_H == 22 && in_M == 0 && in_S == 0) {
+        previousMillis = millis(); 
+      }
+    }
+    if (in_H == 22 && in_M == 0 && in_S == 0) {
       if (millis() - previousMillis > interval) {
         mp3_play (16);
-    previousMillis = millis(); 
+        previousMillis = millis(); 
+      }
+    }
   }
-}
-}
 
 
-void my_year(){
-  uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  void my_year(){
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int y = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-   dt = clock.getDateTime();
-   in_year = dt.year;
-      int year1 = int (in_year/10);
-      int year2 = int (in_year%10);
-        String year1_1 = String (year1/10);
-        String year2_1 = String (year1%10);
-        String year1_2 = String (year2/10);
-        String year2_2 = String (year2%10);
-     int xt = 4;
-     int xn = 17;
+    dt = clock.getDateTime();
+    in_year = dt.year;
+    int year1 = int (in_year/10);
+    int year2 = int (in_year%10);
+    String year1_1 = String (year1/10);
+    String year2_1 = String (year1%10);
+    String year1_2 = String (year2/10);
+    String year2_2 = String (year2%10);
+    int xt = 4;
+    int xn = 17;
     matrix.drawChar(xt, y, year1_1[0], HIGH, LOW, 1);
     matrix.drawChar(xt+6, y, year1_2[0], HIGH, LOW, 1);
     matrix.drawChar(xn, y, year2_1[0], HIGH, LOW, 1);
     matrix.drawChar(xn+6, y, year2_2[0], HIGH, LOW, 1);
 
     if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.year++;                             // пребавляем единицу к часам
-if (dt.year > 3000) dt.year = 0;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    dt.second = 0;                         // сбрасываем секунды
-dt.year--;                             // пребавляем единицу к часам
-if (dt.year < 1800) dt.year = 3000;         // если вылезли за границы присваеваем 0
-clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
- }
-     matrix.write(); // Вывод на диспл
-}
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.year++;                             // пребавляем единицу к часам
+      if (dt.year > 3000) dt.year = 0;         // если вылезли за границы присваеваем 0
+      clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      dt.second = 0;                         // сбрасываем секунды
+      dt.year--;                             // пребавляем единицу к часам
+      if (dt.year < 1800) dt.year = 3000;         // если вылезли за границы присваеваем 0
+        clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);  // запоминаем состояние последних настроек
+    }
+    matrix.write(); // Вывод на диспл
+  }
 
-
-void my_volume() {
-  uint32_t ms = millis();
-   matrix.fillScreen(LOW);
+  void my_volume() {
+    uint32_t ms = millis();
+    matrix.fillScreen(LOW);
     int a = (matrix.height() - 8) / 2; // Центрируем текст по Вертикали
-     int xs = 3;
-     int xd = 17;
+    int xs = 3;
+    int xd = 17;
     String vol1 = String (vol/10);
     String vol2 = String (vol%10);
     matrix.drawChar(xs, a, (String("v"))[0], HIGH, LOW, 1);
@@ -684,22 +685,22 @@ void my_volume() {
     matrix.drawChar(xs+11, a, (String("l"))[0], HIGH, LOW, 1);
     matrix.drawChar(xd+3, a, vol1[0], HIGH, LOW, 1);
     matrix.drawChar(xd+9, a, vol2[0], HIGH, LOW, 1);
-     matrix.write(); // Вывод на диспл
+    matrix.write(); // Вывод на диспл
      
-  if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    vol ++;
-     if (vol > 30) {
-       vol = 0;
- }
+    if ( but_plus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      vol ++;
+      if (vol > 30) {
+        vol = 0;
+      }
+    }
+    if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
+      ms_button = ms;
+      vol --;
+      if (vol < 1) {
+        vol = 30;
+      }
+    }
+    mp3_set_volume (vol);
   }
-  if ( but_minus == HIGH && but_pred == false && (ms - ms_button)>250) {
-    ms_button = ms;
-    vol --;
-     if (vol < 1) {
-       vol = 30;
- }
-  }
-          mp3_set_volume (vol);
-}
 
