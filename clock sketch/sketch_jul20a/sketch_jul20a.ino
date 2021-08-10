@@ -76,7 +76,7 @@
     radio.startListening();
     mySerial.begin (9600);
     mp3_set_serial (mySerial); 
-    // mp3_set_volume (25);
+     mp3_set_volume (12);
     clock.begin(); 
     clock.setDateTime(__DATE__, __TIME__);
     //matrix.setIntensity(13); // Яркость матрицы от 0 до 15
@@ -94,7 +94,7 @@
 
   void loop() {
     data();
-    //speak();
+    speak();
     but_tec = digitalRead(kn_mode);
     but_plus = digitalRead(kn_plus);
     but_minus = digitalRead(kn_minus);
@@ -114,12 +114,12 @@
     
     switch(mode) {
       case 0:Serial.println ("идут часы");
-        if(millis()-clkTime > 15000 && !del && dots) { //каждые 45 секунд запускаем бегущую строку
+        if(millis()-clkTime > 45000 && !del && dots) { //каждые 45 секунд запускаем бегущую строку
           ScrollText(utf8rus(weatherString)); //тут текст строки, потом будет погода и т.д.
           updCnt--;
           clkTime = millis();
         }
-        oclock();
+        oclock(); // функция часов
         if(millis()-dotTime > 500) {
           dotTime = millis();
           dots = !dots;
